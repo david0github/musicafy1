@@ -50,34 +50,34 @@ public class MostPopularArtistActivity extends AppCompatActivity {
         myHelper = new dbHelper(this);
 
         artistData.add(new ArtistData("Jason", "Aldean", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Macon, GA", "Broken Bow Records", "My Kinda Party, Old Boots New Dirt, Wid Open"));
 
         artistData.add(new ArtistData("Cardi", "B", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "The Bronx, NY", "Atlantic Records", "Gangsta Bitch Music Vol 2, Gangsta bitch Music Vol 1, Invasion of Privacy"));
 
         artistData.add(new ArtistData("Drake", "", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Toronto, Canada", "OVO Sound", "If You're Reading This Its Too Late, So Far Gone, Take Care"));
 
         artistData.add(new ArtistData("Breaking", "Benjamin", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Wilkes-Barre, PA", "Hollywood Records", "Dear Agony, Dark Before Dawn, Phobia"));
 
         artistData.add(new ArtistData("Imagine", "Dragons", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Las Vegas, NV", "Interscope Records", "Evolve, Smoke + Mirrors, Night Visions"));
 
         artistData.add(new ArtistData("Ed", "Sheeran", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Halifax, United Kingdom", "Warner Music Group", "Divide, X, The Orange Room EP"));
 
         artistData.add(new ArtistData("The", "Weeknd", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Toronto, Canada", "XO Records", "Starboy, My Dear  Melancholy, Beauty Behind the Madness"));
 
         artistData.add(new ArtistData("Post", "Malone", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Syracuse, NY", "Republic Records", "Stoney, Beerbongs & Bentleys, August 26th"));
 
         artistData.add(new ArtistData("Kendrick", "Lamar", "https://at-cdn-s01.audiotool.com/2015/02/13/documents/i_never_would_kendrick_lamar_drake_travis_scott_type_beat_prod_by_radical_behavior/1/cover256x256-febd6fba799d4bef80c472d063e40867.jpg",
                 "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
 
         artistData.add(new ArtistData("John", "Prine", "http://s3.amazonaws.com/factmag-images/wp-content/uploads/2017/03/screen-shot-2016-01-14-at-9-15-37-pm-616x4401.png",
-                    "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city"));
+                    "Maywood, IL", "Top Dawg Entertainment", "In Spite of Ourselves, The Missing Years, For Better or Worse"));
 
         }
 
