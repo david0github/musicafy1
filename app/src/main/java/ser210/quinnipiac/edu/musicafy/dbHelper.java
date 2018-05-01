@@ -70,9 +70,7 @@ public class dbHelper extends SQLiteOpenHelper {
      String query = String.format("SELECT artistFirstName, artistLastName, homeTown, recordLabel, albums FROM ", TABLE_NAME_ARTISTS);
      Cursor cursor = db.rawQuery(query, null);
      ArrayList<String> artist = new ArrayList<String>(){
-
      }
-
      } */
 
     public void addSong(String songName, String artistFirstName, String artistLastName, String yearRelease, String album,
@@ -114,5 +112,4 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 }
-
 
