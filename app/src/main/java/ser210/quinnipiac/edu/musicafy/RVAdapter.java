@@ -1,5 +1,6 @@
 package ser210.quinnipiac.edu.musicafy;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -21,41 +22,58 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> {
 
-    private List<ArtistData> artistData;
+    private Context mContext;
+    private RecyclerView mRecyclerV;
+    private List<ArtistData> mArtistList;
 
-    RVAdapter(List<ArtistData> artistData) {
+    //provide a reference to the views for each data item
+    //complex data items may need more than one view per item, and
+    //you provide access to all the views for a data item in a view holder
+    public class ArtistViewHolder extends RecyclerView.ViewHolder {
 
-        this.artistData = artistData;
+        //each data item is just a string in this case
+        public CardView cv;
+        public TextView artistFirstName;
+        public TextView homeTown;
+        public TextView albums;
+        public TextView recordLabel;
+        public ImageView artistImage;
+        public TextView artistLastName;
 
-    }
+        public View layout;
 
-    public static class ArtistViewHolder extends RecyclerView.ViewHolder {
-
-        CardView cv;
-        TextView artistFirstName;
-        TextView homeTown;
-        TextView ablums;
-        TextView recordLabel;
-        ImageView artistImage;
-        TextView artistLastName;
-
-        ArtistViewHolder(View itemView){
+        public ArtistViewHolder(View itemView){
 
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
+            layout = itemView;
             artistFirstName = (TextView) itemView.findViewById(R.id.artist_firstName);
             artistLastName = (TextView) itemView.findViewById(R.id.artist_lastName);
             homeTown = (TextView) itemView.findViewById(R.id.home_town);
-            ablums = (TextView) itemView.findViewById(R.id.albums);
+            albums = (TextView) itemView.findViewById(R.id.albums);
             recordLabel = (TextView) itemView.findViewById(R.id.recordLabel);
-            artistImage = (ImageView) itemView.findViewById(R.id.artist_image);
+            //artistImage = (ImageView) itemView.findViewById(R.id.artist_image);
 
         }
     }
 
     @Override
     public int getItemCount(){
-        return artistData.size();
+
+        return mArtistList.size();
+    }
+
+    public void add(int position, ArtistData artistData){
+        mArtistList.add(position, artistData);
+    }
+
+    public void remove(int position){
+        mArtistList.remove(position);
+    }
+
+    public RVAdapter(List<ArtistData> myDataset, Context context, RecyclerView recyclerView){
+        mArtistList = myDataset;
+        mContext = context;
+        mRecyclerV = recyclerView;
     }
 
     @Override
@@ -67,38 +85,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ArtistViewHolder artistViewHolder, int i){
-        artistViewHolder.artistFirstName.setText(artistData.get(i).artistFirstName);
-        artistViewHolder.homeTown.setText(artistData.get(i).homeTown);
-        artistViewHolder.artistLastName.setText(artistData.get(i).artistLastName);
-        artistViewHolder.recordLabel.setText(artistData.get(i).recordLabel);
-        artistViewHolder.ablums.setText(artistData.get(i).albums);
-        new DownloadImageTask(artistViewHolder.artistImage).execute(artistData.get(i).image_url);
+    public void onBindViewHolder(ArtistViewHolder artistViewHolder, final int i){
+
+        final ArtistData artist = mArtistList.get(i);
+
+       artistViewHolder.artistFirstName.setText(artist.getArtistFirstName());
+       artistViewHolder.artistLastName.setText(artist.getArtistLastName());
+       artistViewHolder.homeTown.setText(artist.getHomeTown());
+       artistViewHolder.recordLabel.setText(artist.getRecordLabel());
+       artistViewHolder.albums.setText(artist.getAlbums());
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage){
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls){
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try{
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExcute(Bitmap result){
-            bmImage.setImageBitmap(result);
-        }
-    }
 }
