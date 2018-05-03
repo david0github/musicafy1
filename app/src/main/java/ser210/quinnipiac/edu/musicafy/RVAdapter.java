@@ -22,30 +22,43 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> {
 
-    private Context mContext;
-    private RecyclerView mRecyclerV;
-    private List<ArtistData> mArtistList;
+    static List<ArtistData> mArtistList;
+    static Context context;
+
+    public RVAdapter(Context context, List<ArtistData> mArtistList){
+        this.mArtistList = mArtistList;
+        this.context = context;
+        this.mArtistList = mArtistList;
+    }
+
+    @Override
+    public RVAdapter.ArtistViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.artist_item, null);
+
+        ArtistViewHolder artistViewHolder = new ArtistViewHolder(v);
+        return artistViewHolder;
+
+    }
+
 
     //provide a reference to the views for each data item
     //complex data items may need more than one view per item, and
     //you provide access to all the views for a data item in a view holder
-    public class ArtistViewHolder extends RecyclerView.ViewHolder {
+    public static class ArtistViewHolder extends RecyclerView.ViewHolder {
 
         //each data item is just a string in this case
-        public CardView cv;
+       // public CardView cv;
         public TextView artistFirstName;
         public TextView homeTown;
         public TextView albums;
         public TextView recordLabel;
-        public ImageView artistImage;
+       // public ImageView artistImage;
         public TextView artistLastName;
-
-        public View layout;
 
         public ArtistViewHolder(View itemView){
 
             super(itemView);
-            layout = itemView;
+            //cv = (CardView) itemView.findViewById(R.id.cv);
             artistFirstName = (TextView) itemView.findViewById(R.id.artist_firstName);
             artistLastName = (TextView) itemView.findViewById(R.id.artist_lastName);
             homeTown = (TextView) itemView.findViewById(R.id.home_town);
@@ -70,30 +83,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
         mArtistList.remove(position);
     }
 
-    public RVAdapter(List<ArtistData> myDataset, Context context, RecyclerView recyclerView){
-        mArtistList = myDataset;
-        mContext = context;
-        mRecyclerV = recyclerView;
-    }
-
     @Override
-    public ArtistViewHolder onCreateViewHolder(ViewGroup viewGroup, int i){
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.artist_item, viewGroup, false);
-        ArtistViewHolder avh = new ArtistViewHolder(v);
-        return avh;
+    public void onBindViewHolder(ArtistViewHolder artistViewHolder, int position){
 
-    }
+        artistViewHolder.artistFirstName.setText(mArtistList.get(position).getArtistFirstName());
+        artistViewHolder.artistLastName.setText(mArtistList.get(position).getArtistLastName());
+        artistViewHolder.homeTown.setText(mArtistList.get(position).getHomeTown());
+        artistViewHolder.recordLabel.setText(mArtistList.get(position).getRecordLabel());
+        artistViewHolder.albums.setText(mArtistList.get(position).getAlbums());
 
-    @Override
-    public void onBindViewHolder(ArtistViewHolder artistViewHolder, final int i){
-
-        final ArtistData artist = mArtistList.get(i);
-
-       artistViewHolder.artistFirstName.setText(artist.getArtistFirstName());
-       artistViewHolder.artistLastName.setText(artist.getArtistLastName());
-       artistViewHolder.homeTown.setText(artist.getHomeTown());
-       artistViewHolder.recordLabel.setText(artist.getRecordLabel());
-       artistViewHolder.albums.setText(artist.getAlbums());
     }
 
 }
