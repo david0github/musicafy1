@@ -48,6 +48,40 @@ public class MostPopularArtistActivity extends AppCompatActivity {
 
         myHelper = new dbHelper(this);
 
+        //INSERT METHODS BELOW  " ONCE " TO CREATE A DEFAULT TABLE WITH THE PRE EXISTING VALUES
+        //If THE CODE BELOW IS NOT COMMENTED AFTER THE FIRST INSERTION OF ARTIST, IT WILL CONTINUE TO
+        //CREATE THE SAME TEN ROWS EVERY TIME THE APP IS RUN
+/**
+        myHelper.insertArtist("Jason", "Aldean",
+                "Macon, GA", "Broken Bow Records", "My Kinda Party, Old Boots New Dirt, Wid Open");
+
+        myHelper.insertArtist("Cardi", "B",
+                "The Bronx, NY", "Atlantic Records", "Gangsta Bitch Music Vol 2, Gangsta bitch Music Vol 1, Invasion of Privacy");
+
+        myHelper.insertArtist("Drake", "",
+                "Toronto, Canada", "OVO Sound", "If You're Reading This Its Too Late, So Far Gone, Take Care");
+
+        myHelper.insertArtist("Breaking", "Benjamin",
+                "Wilkes-Barre, PA", "Hollywood Records", "Dear Agony, Dark Before Dawn, Phobia");
+
+        myHelper.insertArtist("Imagine", "Dragons",
+                "Las Vegas, NV", "Interscope Records", "Evolve, Smoke + Mirrors, Night Visions");
+
+        myHelper.insertArtist("Ed", "Sheeran",
+                "Halifax, United Kingdom", "Warner Music Group", "Divide, X, The Orange Room EP");
+
+        myHelper.insertArtist("The", "Weeknd",
+                "Toronto, Canada", "XO Records", "Starboy, My Dear  Melancholy, Beauty Behind the Madness");
+
+        myHelper.insertArtist("Post", "Malone",
+                "Syracuse, NY", "Republic Records", "Stoney, Beerbongs & Bentleys, August 26th");
+
+        myHelper.insertArtist("Kendrick", "Lamar",
+                "Compton, CA", "Top Dawg Entertainment", "DAMN. , To Pimp A Butterfly and good kid, m.A.A.d city");
+
+        myHelper.insertArtist("J.", "Cole",
+                "Frankfurt, Germany", "Dreamville Records", "2014 Forest Hills Drive, Born Sinner, KOD");
+*/
         artists = new ArrayList<ArtistData>();
         artists = myHelper.getAllArtists();
 

@@ -22,9 +22,9 @@ public class dbHelper extends SQLiteOpenHelper {
     //database version
     private static final int DATABASE_VERSION = 1;
     //database name
-    private static final String DATABASE_NAME = "ARTIST";
+    private static final String DATABASE_NAME = "ARTISTS";
     //contacts table name
-    private static final String TABLE_ARTISTS = "ARTIST_TABLE";
+    private static final String TABLE_ARTIST = "ARTIST_TABLE";
     //artist table columns names
     private static final String COL_ID = "id";
     private static final String COL_ARTISTFIRSTNAME = "artistFirstName";
@@ -44,7 +44,7 @@ public class dbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
 
-        String TABLE_CREATE_ARTIST = "CREATE TABLE " + TABLE_ARTISTS + "(" +  COL_ID + " INTEGER PRIMARY KEY, " + COL_ARTISTFIRSTNAME + " TEXT, "
+        String TABLE_CREATE_ARTIST = "CREATE TABLE " + TABLE_ARTIST + "(" +  COL_ID + " INTEGER PRIMARY KEY, " + COL_ARTISTFIRSTNAME + " TEXT, "
                 + COL_ARTISTLASTNAME + " TEXT,  " + COL_HOMETOWN + " TEXT, " + COL_RECORDLABEL + " TEXT, " + COL_ALBUMS + " TEXT);";
 
         db.execSQL(TABLE_CREATE_ARTIST);
@@ -54,7 +54,7 @@ public class dbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         //drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTISTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTIST);
         //creating tables again
         onCreate(db);
     }
@@ -70,7 +70,7 @@ public class dbHelper extends SQLiteOpenHelper {
         values.put(COL_RECORDLABEL, recordLabel);
         values.put(COL_ALBUMS, albums);
 
-        db.insert(TABLE_ARTISTS, null, values);
+        db.insert(TABLE_ARTIST, null, values);
         db.close();
 
     }
@@ -88,7 +88,7 @@ public class dbHelper extends SQLiteOpenHelper {
         values.put(COL_ALBUMS, artistData.getAlbums());
 
         //inserting rows
-        db.insert(TABLE_ARTISTS, null, values);
+        db.insert(TABLE_ARTIST, null, values);
 
         //closing database connection
         db.close();
@@ -100,7 +100,7 @@ public class dbHelper extends SQLiteOpenHelper {
         ArtistData artistData = null;
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {dbHelper.COL_ID, dbHelper.COL_ARTISTFIRSTNAME, dbHelper.COL_ARTISTLASTNAME, dbHelper.COL_HOMETOWN, dbHelper.COL_RECORDLABEL, dbHelper.COL_ALBUMS};
-        Cursor cursor = db.query(dbHelper.TABLE_ARTISTS, columns, dbHelper.COL_ARTISTFIRSTNAME+" = '"+key+"'", null, null, null, null);
+        Cursor cursor = db.query(dbHelper.TABLE_ARTIST, columns, dbHelper.COL_ARTISTFIRSTNAME+" = '"+key+"'", null, null, null, null);
         if(cursor.moveToFirst()){
             int index = cursor.getColumnIndex(dbHelper.COL_ID);
             int index1 = cursor.getColumnIndex(dbHelper.COL_ARTISTFIRSTNAME);
@@ -124,19 +124,21 @@ public class dbHelper extends SQLiteOpenHelper {
     //getting all artists
     public List<ArtistData> getAllArtists(){
 
-        List<ArtistData> artists = new ArrayList<>();
+        List<ArtistData> artists = new ArrayList<>(10);
 
-        String allArtist = "Select * from " + TABLE_ARTISTS;
+        String allArtist = "Select * from " + TABLE_ARTIST;
         db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(allArtist, null);
         if (cursor.moveToFirst()) {
             do {
-                ArtistData artistData = new ArtistData();
+             /**   ArtistData artistData = new ArtistData();
                 artistData.setArtistFirstName(cursor.getString(1));
                 artistData.setArtistLastName(cursor.getString(2));
                 artistData.setHomeTown(cursor.getString(3));
                 artistData.setRecordLabel(cursor.getString(4));
                 artistData.setAlbums(cursor.getString(5));
+*/
+                ArtistData artistData = new ArtistData(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5));
 
                 artists.add(artistData);
 
@@ -148,7 +150,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     //getting artists count
     public int getArtistsCount(){
-        String countQuery = "SELECT * FROM " + TABLE_ARTISTS;
+        String countQuery = "SELECT * FROM " + TABLE_ARTIST;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
@@ -169,14 +171,14 @@ public class dbHelper extends SQLiteOpenHelper {
         values.put(COL_ALBUMS, artistData.getAlbums());
 
         //updating row
-        return db.update(TABLE_ARTISTS, values, COL_ID + "=?",
+        return db.update(TABLE_ARTIST, values, COL_ID + "=?",
                 new String[]{String.valueOf(artistData.getId())});
     }
 
     //deleting a artist
     public void deleteArtist(ArtistData artistData){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ARTISTS, COL_ID + "=?", new String[]{String.valueOf(artistData.getId())});
+        db.delete(TABLE_ARTIST, COL_ID + "=?", new String[]{String.valueOf(artistData.getId())});
         db.close();
     }
 
