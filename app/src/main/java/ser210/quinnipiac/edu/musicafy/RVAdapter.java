@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,9 +29,11 @@ import static android.content.ContentValues.TAG;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> {
 
+    private static final String TAG = "RVAdapter";
+
     static List<ArtistData> mArtistList;
     static Context context;
-    Dialog myDialog;
+    //Dialog myDialog;
 
     private int[] images ={R.drawable.jason, R.drawable.cardi, R.drawable.drake, R.drawable.breaking, R.drawable.imagine, R.drawable.ed,
             R.drawable.weeknd, R.drawable.post, R.drawable.kendrick, R.drawable.jcole};
@@ -38,7 +41,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
     public RVAdapter(Context context, List<ArtistData> mArtistList){
         this.mArtistList = mArtistList;
         this.context = context;
-        this.mArtistList = mArtistList;
     }
 
     @Override
@@ -73,7 +75,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
 
         //each data item is just a string in this case
         // public CardView cv;
-        public LinearLayout item;
+        //public LinearLayout item;
         public int currentItem;
         public TextView artistFirstName;
         public TextView homeTown;
@@ -86,7 +88,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
 
             super(itemView);
             itemView.setOnClickListener(this);
-            item = (LinearLayout) itemView.findViewById(R.id.item_artist_id);
+           // item = (LinearLayout) itemView.findViewById(R.id.item_artist_id);
             // artist_item = (LinearLayout) itemView.findViewById(R.id.item_artist_id);
             //cv = (CardView) itemView.findViewById(R.id.cv);
             artistFirstName = (TextView) itemView.findViewById(R.id.artist_firstName);

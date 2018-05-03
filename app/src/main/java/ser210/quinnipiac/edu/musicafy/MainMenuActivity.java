@@ -5,14 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 //import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button artistBtn;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,24 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         //get passed intent from HomeActivity
         Intent intent = getIntent();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        int res_id = item.getItemId();
+        if(res_id==R.id.action_settings){
+            Toast.makeText(getApplicationContext(), "you selected setting options", Toast.LENGTH_LONG).show();
+        }
+        return true;
     }
 
     public void onSendMessage(View view){
