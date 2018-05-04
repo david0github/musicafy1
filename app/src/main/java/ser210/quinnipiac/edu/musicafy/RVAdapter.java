@@ -13,12 +13,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -29,11 +33,8 @@ import static android.content.ContentValues.TAG;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> {
 
-    private static final String TAG = "RVAdapter";
-
     static List<ArtistData> mArtistList;
     static Context context;
-    //Dialog myDialog;
 
     private int[] images ={R.drawable.jason, R.drawable.cardi, R.drawable.drake, R.drawable.breaking, R.drawable.imagine, R.drawable.ed,
             R.drawable.weeknd, R.drawable.post, R.drawable.kendrick, R.drawable.jcole};
@@ -47,6 +48,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
     public ArtistViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.artist_item, viewGroup, false);
         final ArtistViewHolder artistViewHolder = new ArtistViewHolder(v);
+
         return artistViewHolder;
 
     }
@@ -73,24 +75,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
     //you provide access to all the views for a data item in a view holder
     public static class ArtistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        //each data item is just a string in this case
-        // public CardView cv;
-        //public LinearLayout item;
-        public int currentItem;
         public TextView artistFirstName;
         public TextView homeTown;
         public TextView albums;
         public TextView recordLabel;
         public ImageView itemImage;
         public TextView artistLastName;
+        public ImageView intentImg;
 
         public ArtistViewHolder(View itemView) {
 
             super(itemView);
             itemView.setOnClickListener(this);
-           // item = (LinearLayout) itemView.findViewById(R.id.item_artist_id);
-            // artist_item = (LinearLayout) itemView.findViewById(R.id.item_artist_id);
-            //cv = (CardView) itemView.findViewById(R.id.cv);
             artistFirstName = (TextView) itemView.findViewById(R.id.artist_firstName);
             artistLastName = (TextView) itemView.findViewById(R.id.artist_lastName);
             homeTown = (TextView) itemView.findViewById(R.id.home_town);
@@ -110,7 +106,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ArtistViewHolder> 
 
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "onClick " + getAdapterPosition() + " " + artistFirstName);
+
         }
 
     }

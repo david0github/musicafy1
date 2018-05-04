@@ -4,6 +4,8 @@ package ser210.quinnipiac.edu.musicafy;
  * Created by davidnguyen on 4/26/18.
  */
 
+//getters and setters for artists data
+
 public class ArtistData {
 
      int id;
@@ -13,19 +15,25 @@ public class ArtistData {
      String recordLabel;
    //String image_url;
      String artistLastName;
+     String genre;
 
-    public ArtistData(){
-
-    }
-
-    public ArtistData(int id, String artistFirstName,String artistLastName, String homeTown, String recordLabel, String albums){
+    public ArtistData(int id, String artistFirstName,String artistLastName, String homeTown, String recordLabel, String albums, String genre){
         this.artistFirstName = artistFirstName;
         this.id = id;
+        this.genre = genre;
         this.artistLastName = artistLastName;
         this.homeTown = homeTown;
         this.albums = albums;
         this.recordLabel = recordLabel;
        // this.image_url = image_url;
+    }
+
+    public String getGenre(){
+        return genre;
+    }
+
+    public void setGenre(String genre){
+        this.genre = genre;
     }
 
     public int getId(){

@@ -12,12 +12,15 @@ import android.view.View;
 //import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button artistBtn;
     Toolbar toolbar;
+    private ShareActionProvider mShareActionProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +49,26 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         return true;
     }
 
+    //share option
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-
-        int res_id = item.getItemId();
-        if(res_id==R.id.action_settings){
-            Toast.makeText(getApplicationContext(), "you selected setting options", Toast.LENGTH_LONG).show();
+        switch(item.getItemId()){
+            case R.id.action_share:
+                Intent i = new Intent(
+                        android.content.Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(
+                        android.content.Intent.EXTRA_TEXT, "My new app https://play.google.com/store/search?q=TECHUBINDIAN"
+                );
+                startActivity(Intent.createChooser(
+                        i,
+                        "Share Via"));
+                break;
         }
-        return true;
+
+        Toast.makeText(getApplicationContext(), "You click on menu share", Toast.LENGTH_SHORT).show();
+        return super.onOptionsItemSelected(item);
+
     }
 
     public void onSendMessage(View view){
